@@ -1,4 +1,4 @@
-#FORK OF [TypeGraphQL NestJS ](https://github.com/MichalLytek/typegraphql-nestjs)
+# FORK OF [TypeGraphQL NestJS ](https://github.com/MichalLytek/typegraphql-nestjs)
 
 <p align="center">
   <img alt="typegraphql logo" src="https://raw.githubusercontent.com/MichalLytek/typegraphql-nestjs/master/typegraphql-logo.png" width="300" height="200">
@@ -11,12 +11,16 @@ Basic integration of [TypeGraphQL](https://typegraphql.com/) in [NestJS](https:/
 
 Allows to use TypeGraphQL features while integrating with NestJS modules system and dependency injector.
 
+## Graphql Federation is NOT supported.
+
+This package is being made for use in my current projects, which don't use schema federation, since I have no idea nor the need to use it, it is not being worked on.
+
 ## Installation
 
-First, you need to instal the `typegraphql-nestjs` module along with `@nestjs/graphql`:
+First, you need to install the `@glcap-forks/typegraphql-nestjs` module along with `@nestjs/graphql`:
 
 ```sh
-npm i typegraphql-nestjs @nestjs/graphql
+npm i @glcap-forks/typegraphql-nestjs @nestjs/graphql
 ```
 
 If you haven't installed it yet, it's time to add `type-graphql` into the project:
@@ -131,8 +135,6 @@ export default class AppModule {}
 ```
 
 ## Caveats
-
-Graphql Federation not supported. This for is being made for use in my current projects, which don't use schema federation, since I have no idea nor the need to use schema federation it is not being worked on.
 
 While this integration provides a way to use TypeGraphQL with NestJS modules and dependency injector, for now it doesn't support [other NestJS features](https://docs.nestjs.com/graphql/tooling) like guards, interceptors, filters and pipes.
 
