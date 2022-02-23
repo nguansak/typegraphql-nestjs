@@ -1,27 +1,35 @@
-import { BuildSchemaOptions } from "type-graphql";
-import { GqlModuleOptions } from "@nestjs/graphql";
-import { FactoryProvider, ModuleMetadata } from "@nestjs/common/interfaces";
-import { GraphQLResolveInfo } from "graphql";
+import type { BuildSchemaOptions } from "type-graphql";
+import type { GqlModuleAsyncOptions, GqlModuleOptions } from "@nestjs/graphql";
+import type { GraphQLResolveInfo } from "graphql";
+import { FactoryProvider, ModuleMetadata } from "@nestjs/common";
 
 export type TypeGraphQLFeatureModuleOptions = Pick<
   BuildSchemaOptions,
   "orphanedTypes"
 >;
 
-export type TypeGraphQLRootModuleOptions = Omit<
-  GqlModuleOptions,
-  "schema" | "autoSchemaFile" | "buildSchemaOptions"
-> &
-  Omit<BuildSchemaOptions, "resolvers" | "orphanedTypes" | "container">;
+export type GQLModuleOptionsWithoutSchema<TOptions extends GqlModuleOptions> =
+  Omit<TOptions, "schema" | "autoSchemaFile" | "buildSchemaOptions">;
 
-export interface TypeGraphQLRootModuleAsyncOptions
-  extends Pick<ModuleMetadata, "imports">,
+export type TypeGraphQLBuildSchemaOptions = Omit<
+  BuildSchemaOptions,
+  "resolvers" | "orphanedTypes" | "container"
+>;
+
+export type TypeGraphQLRootModuleOptions<TOptions extends Record<string, any>> =
+  GQLModuleOptionsWithoutSchema<TOptions> & TypeGraphQLBuildSchemaOptions;
+
+export interface TypeGraphQLRootModuleAsyncOptions<
+  TOptions extends Record<string, any>,
+> extends Pick<ModuleMetadata, "imports">,
     Pick<
       FactoryProvider<
-        Promise<TypeGraphQLRootModuleOptions> | TypeGraphQLRootModuleOptions
+        | Promise<TypeGraphQLRootModuleOptions<TOptions>>
+        | TypeGraphQLRootModuleOptions<TOptions>
       >,
       "inject" | "useFactory"
-    > {}
+    >,
+    Pick<GqlModuleAsyncOptions<TOptions>, "driver"> {}
 
 export type ResolveReferenceFn = (
   root: any,
@@ -29,13 +37,18 @@ export type ResolveReferenceFn = (
   info: GraphQLResolveInfo,
 ) => any;
 
-export type TypeGraphQLFeatureFedarationModuleOptions = TypeGraphQLFeatureModuleOptions & {
-  referenceResolvers?: Record<
-    string,
-    { __resolveReference: ResolveReferenceFn }
-  >;
-};
+export type TypeGraphQLFeatureFederationModuleOptions =
+  TypeGraphQLFeatureModuleOptions & {
+    referenceResolvers?: Record<
+      string,
+      { __resolveReference: ResolveReferenceFn }
+    >;
+  };
 
-export type TypeGraphQLRootFederationModuleOptions = TypeGraphQLRootModuleOptions;
+export type TypeGraphQLRootFederationModuleOptions<
+  TOptions extends GqlModuleOptions,
+> = TypeGraphQLRootModuleOptions<TOptions>;
 
-export type TypeGraphQLRootFederationModuleAsyncOptions = TypeGraphQLRootModuleAsyncOptions;
+export type TypeGraphQLRootFederationModuleAsyncOptions<
+  TOptions extends GqlModuleOptions,
+> = TypeGraphQLRootModuleAsyncOptions<TOptions>;

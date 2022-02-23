@@ -1,13 +1,14 @@
+import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { Test } from "@nestjs/testing";
 import { Resolver, Query } from "type-graphql";
-import fs from "fs";
+import fs from "fs/promises";
 import path from "path";
 
 import { TypeGraphQLModule } from "../src/typegraphql.module";
 
 describe("Providers name checking", () => {
   afterAll(async () => {
-    fs.unlinkSync(path.join(__dirname, "../schema.gql"));
+    return fs.unlink(path.join(__dirname, "../schema.gql"));
   });
 
   @Resolver()
@@ -29,8 +30,9 @@ describe("Providers name checking", () => {
   it("should consider providers with Symbol names", async () => {
     const module = await Test.createTestingModule({
       imports: [
-        TypeGraphQLModule.forRoot({
+        TypeGraphQLModule.forRoot<ApolloDriverConfig>({
           emitSchemaFile: true,
+          driver: ApolloDriver,
         }),
       ],
       providers: [
@@ -43,7 +45,7 @@ describe("Providers name checking", () => {
       ],
     }).compile();
 
-    const generatedSchema = fs.readFileSync(
+    const generatedSchema = await fs.readFile(
       path.join(__dirname, "../schema.gql"),
       "utf-8",
     );

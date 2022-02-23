@@ -16,11 +16,11 @@ import OptionsPreparatorService from "./prepare-options.service";
 export default class TypeGraphQLOptionsFactory implements GqlOptionsFactory {
   constructor(
     @Inject(TYPEGRAPHQL_ROOT_MODULE_OPTIONS)
-    private readonly rootModuleOptions: TypeGraphQLRootModuleOptions,
+    private readonly rootModuleOptions: TypeGraphQLRootModuleOptions<GqlModuleOptions>,
     private readonly optionsPreparatorService: OptionsPreparatorService,
   ) {}
 
-  async createGqlOptions(): Promise<GqlModuleOptions> {
+  async createGqlOptions(): Promise<Omit<GqlModuleOptions, "driver">> {
     const { globalMiddlewares } = this.rootModuleOptions;
     const { resolversClasses, container, orphanedTypes } =
       this.optionsPreparatorService.prepareOptions<TypeGraphQLFeatureModuleOptions>(

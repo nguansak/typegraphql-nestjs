@@ -1,22 +1,21 @@
 {
-  "name": "typegraphql-nestjs",
-  "version": "0.4.1",
+  "name": "@glcap-forks/typegraphql-nestjs",
+  "version": "0.5.0",
   "author": {
     "name": "Michał Lytek",
     "url": "https://github.com/MichalLytek"
   },
   "scripts": {
     "build": "tsc",
-    "check:type": "tsc --noEmit",
-    "test": "jest"
+    "typecheck": "tsc --noEmit",
+    "typecheck:watch": "pnpm typecheck -- --watch",
+    "test": "jest",
+    "prepublish": "pnpm build"
   },
   "peerDependencies": {
-    "@apollo/federation": "^0.29.0",
-    "@apollo/gateway": "^0.38.0",
     "@nestjs/common": "^8.0.6",
     "@nestjs/core": "^8.0.6",
-    "@nestjs/graphql": "^8.0.2",
-    "apollo-graphql": "^0.9.3",
+    "@nestjs/graphql": "^10.0.4",
     "graphql-tag": "^2.12.5",
     "type-graphql": "^1.1.1"
   },
@@ -24,18 +23,18 @@
     "tslib": "^2.3.1"
   },
   "devDependencies": {
-    "@apollo/federation": "^0.29.0",
-    "@apollo/gateway": "^0.38.0",
+    "@nestjs/apollo": "^10.0.5",
     "@nestjs/common": "^8.0.6",
-    "@nestjs/core": "^8.0.6",
-    "@nestjs/graphql": "^8.0.2",
+    "@nestjs/core": "^8.3.1",
+    "@nestjs/graphql": "^10.0.5",
     "@nestjs/platform-fastify": "^8.0.6",
     "@nestjs/testing": "^8.0.6",
-    "@types/jest": "^27.0.1",
+    "@types/jest": "^27.4.1",
     "@types/node": "^16.6.2",
-    "apollo-graphql": "^0.9.3",
     "apollo-server-fastify": "^3.1.2",
+    "class-transformer": "^0.5.1",
     "class-validator": "^0.13.1",
+    "fastify": "^3.27.2",
     "graphql": "^15.5.1",
     "graphql-tag": "^2.12.5",
     "graphql-tools": "^8.1.0",
@@ -68,16 +67,12 @@
   "readmeFilename": "README.md",
   "description": "Basic integration of TypeGraphQL in NestJS. Allows to use TypeGraphQL features while integrating with NestJS modules system and dependency injector.",
   "license": "MIT",
-  "funding": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/typegraphql"
-  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/MichalLytek/typegraphql-nestjs.git"
+    "url": "https://github.com/GlCap/typegraphql-nestjs.git"
   },
   "bugs": {
-    "url": "https://github.com/MichalLytek/typegraphql-nestjs/issues"
+    "url": "https://github.com/GlCap/typegraphql-nestjs/issues"
   },
   "keywords": [
     "type-graphql",
@@ -86,7 +81,12 @@
     "graphql"
   ],
   "engines": {
-    "node": ">= 10.3"
+    "node": ">= 14"
   },
-  "private": true
+  "files": [
+    "dist",
+    "pnpm-lock.yaml",
+    "tsconfig.json",
+    "typegraphql-logo.png"
+  ]
 }

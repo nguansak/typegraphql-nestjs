@@ -1,5 +1,5 @@
 import { Module, DynamicModule } from "@nestjs/common";
-import { GraphQLModule } from "@nestjs/graphql";
+import { GqlModuleOptions, GraphQLModule } from "@nestjs/graphql";
 
 import {
   TYPEGRAPHQL_ROOT_MODULE_OPTIONS,
@@ -29,14 +29,18 @@ export class TypeGraphQLModule {
     };
   }
 
-  static forRoot(options: TypeGraphQLRootModuleOptions = {}): DynamicModule {
+  static forRoot<TOptions extends Record<string, any> = GqlModuleOptions>(
+    options: TypeGraphQLRootModuleOptions<TOptions>,
+  ): DynamicModule {
     const dynamicGraphQLModule = GraphQLModule.forRootAsync({
-      useClass: TypeGraphQLOptionsFactory,
+      driver: options.driver,
+      useClass: TypeGraphQLOptionsFactory as any,
     });
+
     return {
       ...dynamicGraphQLModule,
       providers: [
-        ...dynamicGraphQLModule.providers!,
+        ...(dynamicGraphQLModule.providers ?? []),
         OptionsPreparatorService,
         {
           provide: TYPEGRAPHQL_ROOT_MODULE_OPTIONS,
@@ -46,17 +50,19 @@ export class TypeGraphQLModule {
     };
   }
 
-  static forRootAsync(
-    options: TypeGraphQLRootModuleAsyncOptions,
+  static forRootAsync<TOptions extends Record<string, any> = GqlModuleOptions>(
+    options: TypeGraphQLRootModuleAsyncOptions<TOptions>,
   ): DynamicModule {
     const dynamicGraphQLModule = GraphQLModule.forRootAsync({
+      driver: options.driver,
       imports: options.imports,
-      useClass: TypeGraphQLOptionsFactory,
+      useClass: TypeGraphQLOptionsFactory as any,
     });
+
     return {
       ...dynamicGraphQLModule,
       providers: [
-        ...dynamicGraphQLModule.providers!,
+        ...(dynamicGraphQLModule.providers ?? []),
         OptionsPreparatorService,
         {
           inject: options.inject,
