@@ -1,10 +1,7 @@
 {
-  "name": "@glcap-forks/typegraphql-nestjs",
-  "version": "0.5.0",
-  "author": {
-    "name": "Michał Lytek",
-    "url": "https://github.com/MichalLytek"
-  },
+  "name": "@kasi-labs/typegraphql-nestjs",
+  "version": "0.5.0-fork",
+  "author": "Michał Lytek (https://github.com/MichalLytek)",
   "scripts": {
     "build": "tsc",
     "typecheck": "tsc --noEmit",
@@ -64,15 +61,14 @@
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "readmeFilename": "README.md",
   "description": "Basic integration of TypeGraphQL in NestJS. Allows to use TypeGraphQL features while integrating with NestJS modules system and dependency injector.",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/GlCap/typegraphql-nestjs.git"
+    "url": "git+https://github.com/kasi-labs/typegraphql-nestjs.git"
   },
   "bugs": {
-    "url": "https://github.com/GlCap/typegraphql-nestjs/issues"
+    "url": "https://github.com/kasi-labs/typegraphql-nestjs/issues"
   },
   "keywords": [
     "type-graphql",
@@ -88,5 +84,10 @@
     "pnpm-lock.yaml",
     "tsconfig.json",
     "typegraphql-logo.png"
-  ]
+  ],
+  "homepage": "https://github.com/kasi-labs/typegraphql-nestjs#readme",
+  "directories": {
+    "example": "examples",
+    "test": "tests"
+  }
 }

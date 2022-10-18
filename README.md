@@ -17,10 +17,10 @@ This package is being made for use in my current projects, which don't use schem
 
 ## Installation
 
-First, you need to install the `@glcap-forks/typegraphql-nestjs` module along with `@nestjs/graphql`:
+First, you need to install the `@kasi-labs/typegraphql-nestjs` module along with `@nestjs/graphql`:
 
 ```sh
-npm i @glcap-forks/typegraphql-nestjs @nestjs/graphql
+npm i @kasi-labs/typegraphql-nestjs @nestjs/graphql
 ```
 
 If you haven't installed it yet, it's time to add `type-graphql` into the project:
