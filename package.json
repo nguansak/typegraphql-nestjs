@@ -1,50 +1,41 @@
 {
   "name": "@kasi-labs/typegraphql-nestjs",
   "version": "0.5.0-fork",
+  "description": "Basic integration of TypeGraphQL in NestJS. Allows to use TypeGraphQL features while integrating with NestJS modules system and dependency injector.",
+  "keywords": [
+    "type-graphql",
+    "nest",
+    "nestjs",
+    "graphql"
+  ],
+  "homepage": "https://github.com/kasi-labs/typegraphql-nestjs#readme",
+  "bugs": {
+    "url": "https://github.com/kasi-labs/typegraphql-nestjs/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kasi-labs/typegraphql-nestjs.git"
+  },
+  "license": "MIT",
   "author": "Michał Lytek (https://github.com/MichalLytek)",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "directories": {
+    "example": "examples",
+    "test": "tests"
+  },
+  "files": [
+    "dist",
+    "pnpm-lock.yaml",
+    "tsconfig.json",
+    "typegraphql-logo.png"
+  ],
   "scripts": {
     "build": "tsc",
-    "typecheck": "tsc --noEmit",
-    "typecheck:watch": "pnpm typecheck -- --watch",
+    "prepublish": "pnpm build",
     "test": "jest",
-    "prepublish": "pnpm build"
-  },
-  "peerDependencies": {
-    "@nestjs/common": "^8.0.6",
-    "@nestjs/core": "^8.0.6",
-    "@nestjs/graphql": "^10.0.4",
-    "graphql-tag": "^2.12.5",
-    "type-graphql": "^1.1.1"
-  },
-  "dependencies": {
-    "tslib": "^2.3.1"
-  },
-  "devDependencies": {
-    "@nestjs/apollo": "^10.0.5",
-    "@nestjs/common": "^8.0.6",
-    "@nestjs/core": "^8.3.1",
-    "@nestjs/graphql": "^10.0.5",
-    "@nestjs/platform-fastify": "^8.0.6",
-    "@nestjs/testing": "^8.0.6",
-    "@types/jest": "^27.4.1",
-    "@types/node": "^16.6.2",
-    "apollo-server-fastify": "^3.1.2",
-    "class-transformer": "^0.5.1",
-    "class-validator": "^0.13.1",
-    "fastify": "^3.27.2",
-    "graphql": "^15.5.1",
-    "graphql-tag": "^2.12.5",
-    "graphql-tools": "^8.1.0",
-    "husky": "^4.3.8",
-    "jest": "^27.0.6",
-    "lint-staged": "^11.1.2",
-    "prettier": "^2.3.2",
-    "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.3.0",
-    "ts-jest": "^27.0.5",
-    "ts-node": "^10.2.1",
-    "type-graphql": "^1.1.1",
-    "typescript": "^4.3.5"
+    "typecheck": "tsc --noEmit",
+    "typecheck:watch": "pnpm typecheck -- --watch"
   },
   "husky": {
     "hooks": {
@@ -59,35 +50,49 @@
       "prettier --write"
     ]
   },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "description": "Basic integration of TypeGraphQL in NestJS. Allows to use TypeGraphQL features while integrating with NestJS modules system and dependency injector.",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kasi-labs/typegraphql-nestjs.git"
+  "dependencies": {
+    "tslib": "^2.4.0"
   },
-  "bugs": {
-    "url": "https://github.com/kasi-labs/typegraphql-nestjs/issues"
+  "devDependencies": {
+    "@apollo/federation": "^0.37.1",
+    "@apollo/gateway": "^0.50.0",
+    "@apollo/subgraph": "^0.4.0",
+    "@graphql-tools/schema": "^9.0.4",
+    "@nestjs/apollo": "^10.0.5",
+    "@nestjs/common": "^8.0.6",
+    "@nestjs/core": "^8.3.1",
+    "@nestjs/graphql": "10.0.22",
+    "@nestjs/platform-fastify": "^8.0.6",
+    "@nestjs/testing": "^8.0.6",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^16.6.2",
+    "apollo-server-fastify": "^3.1.2",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.13.1",
+    "fastify": "^3.27.2",
+    "graphql": "^15.8.0",
+    "graphql-tag": "^2.12.5",
+    "graphql-tools": "^8.1.0",
+    "husky": "^4.3.8",
+    "jest": "^27.0.6",
+    "lint-staged": "^11.1.2",
+    "prettier": "^2.3.2",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.3.0",
+    "ts-jest": "^27.0.5",
+    "ts-morph": "^15.0.0",
+    "ts-node": "^10.2.1",
+    "type-graphql": "^1.1.1",
+    "typescript": "^4.3.5"
   },
-  "keywords": [
-    "type-graphql",
-    "nest",
-    "nestjs",
-    "graphql"
-  ],
+  "peerDependencies": {
+    "@nestjs/common": "^8.0.6",
+    "@nestjs/core": "^8.3.1",
+    "@nestjs/graphql": "10.0.22",
+    "graphql-tag": "^2.12.5",
+    "type-graphql": "^1.1.1"
+  },
   "engines": {
     "node": ">= 14"
-  },
-  "files": [
-    "dist",
-    "pnpm-lock.yaml",
-    "tsconfig.json",
-    "typegraphql-logo.png"
-  ],
-  "homepage": "https://github.com/kasi-labs/typegraphql-nestjs#readme",
-  "directories": {
-    "example": "examples",
-    "test": "tests"
   }
 }
