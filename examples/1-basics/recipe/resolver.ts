@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { Resolver, Query, Mutation, Arg } from "type-graphql";
 
 import RecipeService from "./service";
-import Recipe from "./type";
+import { Recipe } from "./types";
 
 @Injectable()
 @Resolver()

@@ -11,10 +11,6 @@ Basic integration of [TypeGraphQL](https://typegraphql.com/) in [NestJS](https:/
 
 Allows to use TypeGraphQL features while integrating with NestJS modules system and dependency injector.
 
-## Graphql Federation is NOT supported.
-
-This package is being made for use in my current projects, which don't use schema federation, since I have no idea nor the need to use it, it is not being worked on.
-
 ## Installation
 
 First, you need to install the `@kasi-labs/typegraphql-nestjs` module along with `@nestjs/graphql`:
@@ -133,6 +129,57 @@ Example of using the config service to generate `TypeGraphQLModule` options:
 })
 export default class AppModule {}
 ```
+
+### `TypeGraphQLFederationModule`
+
+`typegraphql-nestjs` has also support for [Apollo Federation](https://www.apollographql.com/docs/federation/).
+
+However, Apollo Federation requires building a federated GraphQL schema, hence you need to use the `TypeGraphQLFederationModule` module, designed specially for that case.
+
+The usage is really similar to the basic `TypeGraphQLModule` - the only different is that `.forFeature()` method has an option to provide `referenceResolvers` object which is needed in some cases of Apollo Federation:
+
+```ts
+function resolveUserReference(
+  reference: Pick<User, "id">,
+): Promise<User | undefined> {
+  return db.users.find({ id: reference.id });
+}
+
+@Module({
+  imports: [
+    TypeGraphQLFederationModule.forFeature({
+      orphanedTypes: [User],
+      referenceResolvers: {
+        User: {
+          __resolveReference: resolveUserReference,
+        },
+      },
+    }),
+  ],
+  providers: [AccountsResolver],
+})
+export default class AccountModule {}
+```
+
+The `.forRoot()` method has no differences but you should provide the `skipCheck: true` option as federated schema can violate the standard GraphQL schema rules like at least one query defined:
+
+```ts
+@Module({
+  imports: [
+    TypeGraphQLFederationModule.forRoot({
+      validate: false,
+      skipCheck: true,
+    }),
+    AccountModule,
+  ],
+})
+export default class AppModule {}
+```
+
+> Be aware that you cannot mix `TypeGraphQLFederationModule.forRoot()` with the base `TypeGraphQLModule.forFeature()` one.
+> You need to consistently use only `TypeGraphQLFederationModule` across all modules.
+
+Then, for exposing the federated schema using Apollo Gateway, you should use the standard NestJS [GraphQLGatewayModule](https://docs.nestjs.com/graphql/federation#federated-example-gateway).
 
 ## Caveats
 

@@ -38,9 +38,9 @@ export default class TypeGraphQLOptionsFactory implements GqlOptionsFactory {
     });
 
     const transformSchemaInternal = async (executableSchema: GraphQLSchema): Promise<GraphQLSchema> => {
-      const transformedSchemaInternal = schema
+      const transformedSchemaInternal = executableSchema
         ? mergeSchemas({ schemas: [schema, executableSchema] })
-        : executableSchema
+        : schema
 
       return transformSchema ? transformSchema(transformedSchemaInternal) : transformedSchemaInternal
     }

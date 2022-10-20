@@ -1,6 +1,6 @@
 {
   "name": "@kasi-labs/typegraphql-nestjs",
-  "version": "0.5.0-fork",
+  "version": "0.5.1",
   "description": "Basic integration of TypeGraphQL in NestJS. Allows to use TypeGraphQL features while integrating with NestJS modules system and dependency injector.",
   "keywords": [
     "type-graphql",
@@ -51,6 +51,7 @@
     ]
   },
   "dependencies": {
+    "@kasi-labs/typegraphql-nestjs": "link:",
     "tslib": "^2.4.0"
   },
   "devDependencies": {
