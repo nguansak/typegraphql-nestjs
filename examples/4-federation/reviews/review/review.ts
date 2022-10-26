@@ -1,4 +1,4 @@
-import { Directive, ObjectType, Field, ID } from "type-graphql";
+import { Directive, ObjectType, Field, ID } from "@kasi-labs/type-graphql";
 
 import User from "../user/user";
 import Product from "../product/product";

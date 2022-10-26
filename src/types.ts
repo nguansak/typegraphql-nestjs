@@ -1,4 +1,4 @@
-import type { BuildSchemaOptions } from "type-graphql";
+import type { BuildSchemaOptions } from "@kasi-labs/type-graphql";
 import type { GqlModuleAsyncOptions, GqlModuleOptions } from "@nestjs/graphql";
 import type { GraphQLResolveInfo } from "graphql";
 import { FactoryProvider, ModuleMetadata } from "@nestjs/common";

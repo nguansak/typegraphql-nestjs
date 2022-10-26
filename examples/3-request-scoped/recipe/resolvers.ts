@@ -1,5 +1,5 @@
 import { Injectable, Scope } from "@nestjs/common";
-import { Resolver, Query, Mutation, Arg, FieldResolver } from "type-graphql";
+import { Resolver, Query, Mutation, Arg, FieldResolver } from "@kasi-labs/type-graphql";
 
 import RecipeService from "./service";
 import { Recipe, AddRecipeResult } from "./types";

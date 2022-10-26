@@ -12,7 +12,7 @@ import {
   ClassType,
   createResolversMap,
   NonEmptyArray,
-} from "type-graphql";
+} from "@kasi-labs/type-graphql";
 
 import OptionsPreparatorService from "./prepare-options.service";
 import {

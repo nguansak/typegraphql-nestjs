@@ -1,4 +1,4 @@
-import { Resolver, FieldResolver, Directive, Root } from "type-graphql";
+import { Resolver, FieldResolver, Directive, Root } from "@kasi-labs/type-graphql";
 
 import Product from "./product";
 

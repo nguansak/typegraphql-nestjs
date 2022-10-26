@@ -1,6 +1,6 @@
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { Test } from "@nestjs/testing";
-import { Resolver, Query } from "type-graphql";
+import { Resolver, Query } from "@kasi-labs/type-graphql";
 import fs from "fs/promises";
 import path from "path";
 
