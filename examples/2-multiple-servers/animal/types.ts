@@ -1,4 +1,4 @@
-import { ObjectType, Field, Int, InputType } from "@kasi-labs/type-graphql";
+import { ObjectType, Field, Int, InputType } from "type-graphql";
 
 @ObjectType()
 @InputType("AnimalInput")

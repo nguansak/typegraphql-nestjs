@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { MiddlewareInterface, NextFn, ResolverData } from "@kasi-labs/type-graphql";
+import { MiddlewareInterface, NextFn, ResolverData } from "type-graphql";
 import { LoggingService } from "./service";
 
 @Injectable()

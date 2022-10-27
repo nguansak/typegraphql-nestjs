@@ -1,4 +1,4 @@
-import { Resolver, Query, Arg } from "@kasi-labs/type-graphql";
+import { Resolver, Query, Arg } from "type-graphql";
 
 import Product from "./product";
 import { products } from "./data";

@@ -2,8 +2,8 @@ import { Injectable, flatten } from "@nestjs/common";
 import { ModulesContainer, ModuleRef, ContextIdFactory } from "@nestjs/core";
 import { REQUEST_CONTEXT_ID } from "@nestjs/core/router/request/request-constants";
 import { InstanceWrapper } from "@nestjs/core/injector/instance-wrapper";
-import { ClassType, ContainerType, getMetadataStorage } from "@kasi-labs/type-graphql";
-import { Middleware } from "@kasi-labs/type-graphql/dist/interfaces/Middleware";
+import { ClassType, ContainerType, getMetadataStorage } from "type-graphql";
+import { Middleware } from "type-graphql/dist/interfaces/Middleware";
 
 import { TypeGraphQLFeatureModuleOptions } from "./types";
 

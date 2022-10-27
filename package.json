@@ -1,5 +1,5 @@
 {
-  "name": "@kasi-labs/typegraphql-nestjs",
+  "name": "typegraphql-nestjs",
   "version": "1.0.0-alpha",
   "description": "Basic integration of TypeGraphQL in NestJS. Allows to use TypeGraphQL features while integrating with NestJS modules system and dependency injector.",
   "keywords": [
@@ -51,8 +51,8 @@
     ]
   },
   "dependencies": {
-    "@kasi-labs/typegraphql-nestjs": "link:",
-    "tslib": "^2.4.0"
+    "tslib": "^2.4.0",
+    "typegraphql-nestjs": "link:"
   },
   "devDependencies": {
     "@apollo/federation": "^0.37.1",
@@ -83,7 +83,7 @@
     "ts-jest": "^27.0.5",
     "ts-morph": "^15.0.0",
     "ts-node": "^10.2.1",
-    "@kasi-labs/type-graphql": "2.0.0-alpha",
+    "type-graphql": "workspace:2.0.0-alpha",
     "typescript": "^4.3.5"
   },
   "peerDependencies": {
@@ -91,7 +91,7 @@
     "@nestjs/core": "^8.3.1",
     "@nestjs/graphql": "10.0.22",
     "graphql-tag": "^2.12.5",
-    "@kasi-labs/type-graphql": "2.0.0-alpha"
+    "type-graphql": "workspace:2.0.0-alpha"
   },
   "engines": {
     "node": ">= 14"

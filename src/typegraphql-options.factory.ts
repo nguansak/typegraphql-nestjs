@@ -1,6 +1,6 @@
 import { Injectable, Inject } from "@nestjs/common";
 import { GqlOptionsFactory, GqlModuleOptions } from "@nestjs/graphql";
-import { buildSchema, ClassType, NonEmptyArray } from "@kasi-labs/type-graphql";
+import { buildSchema, ClassType, NonEmptyArray } from "type-graphql";
 import { mergeSchemas } from '@graphql-tools/schema'
 
 import {

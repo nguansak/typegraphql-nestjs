@@ -1,4 +1,4 @@
-import { ObjectType, Field, InputType } from "@kasi-labs/type-graphql";
+import { ObjectType, Field, InputType } from "type-graphql";
 
 @ObjectType()
 @InputType("RecipeInput")

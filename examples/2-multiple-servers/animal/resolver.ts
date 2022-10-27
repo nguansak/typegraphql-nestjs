@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { Resolver, Query, Mutation, Arg } from "@kasi-labs/type-graphql";
+import { Resolver, Query, Mutation, Arg } from "type-graphql";
 
 import AnimalService from "./service";
 import { Animal } from "./types";

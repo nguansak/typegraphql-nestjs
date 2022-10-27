@@ -1,4 +1,4 @@
-import { Field, ObjectType, Directive, ID } from "@kasi-labs/type-graphql";
+import { Field, ObjectType, Directive, ID } from "type-graphql";
 
 @Directive(`@key(fields: "id")`)
 @ObjectType()
