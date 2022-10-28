@@ -1,5 +1,6 @@
 import { Module } from "@nestjs/common";
 import { ApolloFederationDriver, ApolloFederationDriverConfig } from "@nestjs/apollo";
+import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core'
 
 import { TypeGraphQLFederationModule } from "../../../src";
 import AccountModule from "./account.module";
@@ -10,6 +11,11 @@ import AccountModule from "./account.module";
       driver: ApolloFederationDriver,
       validate: false,
       skipCheck: true,
+      playground: false,
+      cors: {
+        origin: ['https://sandbox.embed.apollographql.com'],
+      },
+      plugins: [ApolloServerPluginLandingPageLocalDefault({ embed: true })],
     }),
     AccountModule,
   ],

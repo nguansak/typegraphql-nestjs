@@ -1,6 +1,6 @@
 import type { BuildSchemaOptions } from "type-graphql";
 import type { GqlModuleAsyncOptions, GqlModuleOptions } from "@nestjs/graphql";
-import type { GraphQLResolveInfo } from "graphql";
+import type { GraphQLDirective, GraphQLResolveInfo } from "graphql";
 import { FactoryProvider, ModuleMetadata } from "@nestjs/common";
 
 export type TypeGraphQLFeatureModuleOptions = Pick<

@@ -51,13 +51,15 @@
     ]
   },
   "dependencies": {
+    "@apollo/federation-internals": "^2.1.4",
+    "@graphql-tools/utils": "^8.12.0",
     "tslib": "^2.4.0",
     "typegraphql-nestjs": "link:"
   },
   "devDependencies": {
-    "@apollo/federation": "^0.37.1",
-    "@apollo/gateway": "^0.50.0",
-    "@apollo/subgraph": "^0.4.0",
+    "@apollo/gateway": "^2.1.4",
+    "@apollo/subgraph": "^2.1.4",
+    "apollo-server-core": "^3.10.3",
     "@graphql-tools/schema": "^9.0.4",
     "@nestjs/apollo": "^10.0.5",
     "@nestjs/common": "^8.0.6",

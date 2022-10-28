@@ -1,5 +1,6 @@
 import { Injectable, Inject } from "@nestjs/common";
 import { GqlOptionsFactory, GqlModuleOptions } from "@nestjs/graphql";
+import { GraphQLSchema } from "graphql/type";
 import { buildSchema, ClassType, NonEmptyArray } from "type-graphql";
 import { mergeSchemas } from '@graphql-tools/schema'
 
@@ -12,7 +13,7 @@ import {
   TypeGraphQLFeatureModuleOptions,
 } from "./types";
 import OptionsPreparatorService from "./prepare-options.service";
-import { GraphQLSchema } from "graphql/type";
+
 
 @Injectable()
 export default class TypeGraphQLOptionsFactory implements GqlOptionsFactory {

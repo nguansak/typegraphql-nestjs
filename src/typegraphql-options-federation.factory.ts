@@ -1,20 +1,15 @@
-import { directivesWithNoDefinitionNeeded } from "@apollo/subgraph/dist/directives";
+import { federationDirectives } from "@apollo/subgraph/dist/directives";
 import { printSubgraphSchema, buildSubgraphSchema } from "@apollo/subgraph"
 import { addResolversToSchema, GraphQLResolverMap } from "@apollo/subgraph/dist/schema-helper"
 import { mergeSchemas } from "@graphql-tools/schema";
 import { Inject, Injectable } from "@nestjs/common";
 import { GqlModuleOptions, GqlOptionsFactory } from "@nestjs/graphql";
-import { GraphQLSchema, specifiedDirectives } from "graphql";
+import { ClassType, NonEmptyArray } from "type-graphql";
+import { GraphQLSchema, specifiedDirectives, print } from "graphql";
 import gql from "graphql-tag";
+import { graphQLJSSchemaToAST } from '@apollo/federation-internals'
+import { buildFederatedSchema } from "./helpers/buildFederatedSchema"
 
-import {
-  buildSchema,
-  ClassType,
-  createResolversMap,
-  NonEmptyArray,
-} from "type-graphql";
-
-import OptionsPreparatorService from "./prepare-options.service";
 import {
   TYPEGRAPHQL_FEATURE_FEDERATION_MODULE_OPTIONS,
   TYPEGRAPHQL_ROOT_FEDERATION_MODULE_OPTIONS,
@@ -23,6 +18,7 @@ import {
   TypeGraphQLRootFederationModuleOptions,
   TypeGraphQLFeatureFederationModuleOptions,
 } from "./types";
+import OptionsPreparatorService from "./prepare-options.service";
 
 
 @Injectable()
@@ -60,27 +56,23 @@ export default class TypeGraphQLFederationOptionsFactory
           )
         : undefined;
 
-    const baseSchema = await buildSchema({
-      ...this.rootModuleOptions,
-      directives: [...specifiedDirectives, ...directivesWithNoDefinitionNeeded],
-      resolvers: resolversClasses as NonEmptyArray<ClassType>,
-      orphanedTypes,
-      container,
-    });
+    const schema = await buildFederatedSchema(
+      {
+        ...this.rootModuleOptions,
+        resolvers: resolversClasses as NonEmptyArray<ClassType>,
+        orphanedTypes,
+        container
+      },
+      referenceResolvers,
+    )
 
-    const schema = buildSubgraphSchema({
-      typeDefs: gql(printSubgraphSchema(baseSchema)),
-      resolvers: createResolversMap(baseSchema) as GraphQLResolverMap<any>,
-    });
 
-    if (referenceResolvers) {
-      addResolversToSchema(schema, referenceResolvers);
-    }
 
     const transformSchemaInternal = async (executableSchema: GraphQLSchema): Promise<GraphQLSchema> => {
       const transformedSchemaInternal = executableSchema
-        ? mergeSchemas({ schemas: [schema, executableSchema] })
+        ? mergeSchemas({ schemas: [executableSchema, schema] })
         : schema
+
       return transformSchema ? transformSchema(transformedSchemaInternal) : transformedSchemaInternal
     }
 
